@@ -1,0 +1,5 @@
+{
+    "name": "Analyze pt-stalk container",
+    "image": "mcr.microsoft.com/devcontainers/python:3.11",
+    "forwardPorts": [8050]
+}
