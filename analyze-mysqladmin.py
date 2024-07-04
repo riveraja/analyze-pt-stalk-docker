@@ -10,7 +10,9 @@ import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 import plotly.graph_objs as go
 from tqdm import tqdm
+from dotenv import load_dotenv
 
+load_dotenv()
 # Flask server
 server = Flask(__name__)
 
@@ -69,7 +71,7 @@ def get_mysqladmin_files(directory):
     return [os.path.join(directory, f) for f in os.listdir(directory) if f.endswith('-mysqladmin')]
 
 if len(sys.argv) != 2:
-    print("Usage: python app.py <path_to_directory>")
+    print("Usage: python analyze-mysqladmin.py <path_to_directory>")
     sys.exit(1)
 
 directory = sys.argv[1]
@@ -114,4 +116,4 @@ app.layout = dbc.Container([
 ], fluid=True, className='bg-light')
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=True, port=os.getenv("PORT"))
